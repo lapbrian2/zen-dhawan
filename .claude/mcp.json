@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "skills-orchestrator": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\Brian\\OneDrive\\Desktop\\Agentic Systems\\skills-orchestrator\\mcp_server.py"
+      ]
+    }
+  }
+}

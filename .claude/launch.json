@@ -1,0 +1,159 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "interactive-heart",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "interactive-heart"],
+      "port": 5173
+    },
+    {
+      "name": "portfolio-dev",
+      "runtimeExecutable": "npx.cmd",
+      "runtimeArgs": [
+        "nuxi",
+        "dev",
+        "--cwd",
+        "brian-lapinski-portfolio"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "murmuration",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "murmuration/server.js"
+      ],
+      "port": 3333
+    },
+    {
+      "name": "ml-systems",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "ml-systems-dev.cmd"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "bomb-the-web",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "npx serve bomb-the-web -l 3456 --no-clipboard"
+      ],
+      "port": 3456
+    },
+    {
+      "name": "shelf-light",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd shelf-light && npx.cmd vite --port 5173"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "the-vernissage",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "npx serve the-vernissage -l 3457 --no-clipboard"
+      ],
+      "port": 3457
+    },
+    {
+      "name": "brian-site",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd brian-lapinski-site && npx.cmd nuxi dev --port 3100"
+      ],
+      "port": 3100
+    },
+    {
+      "name": "process-map",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "npx.cmd serve -l 3500 --no-clipboard"
+      ],
+      "port": 3500
+    },
+    {
+      "name": "voight-studio",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "npx serve voight-studio -l 3458 --no-clipboard"
+      ],
+      "port": 3458
+    },
+    {
+      "name": "neon-ronin",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd neon-ronin && npx.cmd nuxi dev --port 3201"
+      ],
+      "port": 3201
+    },
+    {
+      "name": "meraki-district",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd meraki-district && npx.cmd nuxi dev --port 3400"
+      ],
+      "port": 3400
+    },
+    {
+      "name": "infra-insight",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd C:\\Users\\Brian\\OneDrive\\Desktop\\infra-insight-view && npx.cmd vite --port 8080"
+      ],
+      "port": 8080
+    },
+    {
+      "name": "session-pulser",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd session-pulser && npx.cmd next dev --port 3600"
+      ],
+      "port": 3600
+    },
+    {
+      "name": "entropy",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "npx serve entropy -l 3700 --no-clipboard"
+      ],
+      "port": 3700
+    },
+    {
+      "name": "style-dna",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd style-dna-extractor && npx.cmd nuxi dev --port 3800"
+      ],
+      "port": 3800
+    },
+    {
+      "name": "moholy",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "moholy/playground", "--config", "moholy/vite.playground.config.ts", "--port", "5174"],
+      "port": 5174
+    },
+    {
+      "name": "zen-dhawan",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "--port", "5175"],
+      "port": 5175
+    }
+  ]
+}
