@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import type { PositionedProject } from '../data/layout'
 import { useMapStore } from '../store/useMapStore'
 import { BuildingIcon } from './BuildingIcon'
+import { findDirectConnections, getStreetKey } from '../utils/pathfinding'
 
 interface Props {
   project: PositionedProject
@@ -14,6 +15,14 @@ export function BuildingNode({ project }: Props) {
   const nameRef = useRef<HTMLDivElement>(null)
   const selectProject = useMapStore(s => s.selectProject)
   const setHoveredProject = useMapStore(s => s.setHoveredProject)
+  const focusedNode = useMapStore(s => s.focusedNode)
+  const connectedNodes = useMapStore(s => s.connectedNodes)
+  const activeFilter = useMapStore(s => s.activeFilter)
+  const setFocusedNode = useMapStore(s => s.setFocusedNode)
+
+  const isDimmed = (focusedNode && !connectedNodes.has(project.id)) ||
+    (activeFilter && !connectedNodes.has(project.id))
+  const isFocused = focusedNode === project.id
 
   useGSAP(() => {
     if (!ref.current || !nameRef.current) return
@@ -26,19 +35,30 @@ export function BuildingNode({ project }: Props) {
         duration: 0.4,
         scrambleText: { text: project.shortName, chars: 'upperCase', speed: 0.4 },
       })
+      const direct = findDirectConnections(project.id)
+      const streetKeys = direct.map(d => getStreetKey(project.id, d))
+      setFocusedNode(project.id, new Set([project.id, ...direct]), new Set(streetKeys))
     })
 
     el.addEventListener('mouseleave', () => {
       setHoveredProject(null)
+      if (!activeFilter) {
+        setFocusedNode(null, new Set(), new Set())
+      }
     })
   }, { scope: ref })
 
   const statusClass = `building__status building__status--${project.status}`
+  const cls = [
+    'building',
+    isDimmed && 'building--dimmed',
+    isFocused && 'building--focused',
+  ].filter(Boolean).join(' ')
 
   return (
     <div
       ref={ref}
-      className="building"
+      className={cls}
       style={{ left: project.x, top: project.y }}
       data-flip-id={project.id}
       onClick={() => selectProject(project.id)}

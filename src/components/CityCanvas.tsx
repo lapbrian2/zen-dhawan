@@ -5,17 +5,21 @@ import { Draggable } from 'gsap/Draggable'
 import { Observer } from 'gsap/Observer'
 import { getCityLayout } from '../data/layout'
 import { useMapStore } from '../store/useMapStore'
+import { CityGrid } from './CityGrid'
 import { DistrictLayer } from './DistrictLayer'
 import { StreetLayer } from './StreetLayer'
+import { TravelingDots } from './TravelingDots'
 import { BuildingNode } from './BuildingNode'
 import { LandmarkNode } from './LandmarkNode'
 
 export function CityCanvas() {
   const canvasRef = useRef<HTMLDivElement>(null)
   const worldRef = useRef<HTMLDivElement>(null)
+  const planeRef = useRef<HTMLDivElement>(null)
   const { projects, landmarks } = getCityLayout()
   const setPan = useMapStore(s => s.setPan)
   const setZoom = useMapStore(s => s.setZoom)
+  const zoomLevel = useMapStore(s => s.zoomLevel)
   const inputEnabled = useMapStore(s => s.inputEnabled)
   const zoomRef = useRef(1)
 
@@ -53,8 +57,8 @@ export function CityCanvas() {
         setZoom(newZoom)
         gsap.to(world, {
           scale: newZoom,
-          duration: 0.3,
-          ease: 'power2.out',
+          duration: 0.35,
+          ease: 'city-zoom',
           overwrite: true,
           onUpdate: updateTransform,
         })
@@ -68,17 +72,33 @@ export function CityCanvas() {
     }
   }, [inputEnabled])
 
+  useEffect(() => {
+    if (planeRef.current) {
+      planeRef.current.setAttribute('data-zoom', zoomLevel)
+    }
+  }, [zoomLevel])
+
   return (
     <div ref={canvasRef} className="city-canvas">
       <div ref={worldRef} className="city-world">
-        <DistrictLayer />
-        <StreetLayer />
-        {projects.map(p => (
-          <BuildingNode key={p.id} project={p} />
-        ))}
-        {landmarks.map(lm => (
-          <LandmarkNode key={lm.id} landmark={lm} />
-        ))}
+        <div ref={planeRef} className="city-plane" data-zoom={zoomLevel}>
+          <div className="layer--bg">
+            <CityGrid />
+            <DistrictLayer />
+          </div>
+          <div className="layer--mid">
+            <StreetLayer />
+            <TravelingDots />
+          </div>
+          <div className="layer--fg">
+            {projects.map(p => (
+              <BuildingNode key={p.id} project={p} />
+            ))}
+            {landmarks.map(lm => (
+              <LandmarkNode key={lm.id} landmark={lm} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

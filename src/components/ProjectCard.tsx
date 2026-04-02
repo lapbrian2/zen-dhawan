@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
+import { SplitText } from 'gsap/SplitText'
 import { useMapStore } from '../store/useMapStore'
 import { projects } from '../data/projects'
 
@@ -9,6 +10,7 @@ export function ProjectCard() {
   const selectProject = useMapStore(s => s.selectProject)
   const overlayRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
+  const nameRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
 
   const project = projects.find(p => p.id === selectedId)
@@ -21,19 +23,33 @@ export function ProjectCard() {
 
     const state = Flip.getState(buildingEl)
     gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.3 })
+
     Flip.from(state, {
       targets: cardRef.current,
       duration: 0.6,
-      ease: 'power3.inOut',
+      ease: 'card-open',
       scale: true,
       absolute: true,
     })
 
+    if (nameRef.current) {
+      const split = SplitText.create(nameRef.current, { type: 'chars' })
+      gsap.from(split.chars, {
+        y: 30,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.02,
+        ease: 'power3.out',
+        delay: 0.3,
+      })
+    }
+
     if (descRef.current) {
+      descRef.current.textContent = ''
       gsap.to(descRef.current, {
-        delay: 0.4,
-        duration: 1.2,
-        text: { value: project.description, speed: 1 },
+        delay: 0.5,
+        duration: 1.5,
+        text: { value: project.description, speed: 1.5 },
         ease: 'none',
       })
     }
@@ -60,7 +76,7 @@ export function ProjectCard() {
         <button className="project-card__close" onClick={() => selectProject(null)} aria-label="Close">
           x
         </button>
-        <h2 className="project-card__name">{project.name}</h2>
+        <h2 ref={nameRef} className="project-card__name">{project.name}</h2>
         <div className="project-card__district">{project.district.replace('-', ' / ')}</div>
         <p ref={descRef} className="project-card__description">&nbsp;</p>
         <div className="project-card__tech">

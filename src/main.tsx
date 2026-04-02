@@ -12,7 +12,13 @@ import { SplitText } from 'gsap/SplitText'
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin'
 import { TextPlugin } from 'gsap/TextPlugin'
 import { CustomEase } from 'gsap/CustomEase'
+import { CustomBounce } from 'gsap/CustomBounce'
+import { CustomWiggle } from 'gsap/CustomWiggle'
+import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
+import { Physics2DPlugin } from 'gsap/Physics2DPlugin'
+import { PhysicsPropsPlugin } from 'gsap/PhysicsPropsPlugin'
 import { EasePack } from 'gsap/EasePack'
+import { registerEases } from './animations/eases'
 import App from './App'
 import './reset.css'
 import './App.css'
@@ -29,8 +35,15 @@ gsap.registerPlugin(
   ScrambleTextPlugin,
   TextPlugin,
   CustomEase,
+  CustomBounce,
+  CustomWiggle,
+  MorphSVGPlugin,
+  Physics2DPlugin,
+  PhysicsPropsPlugin,
   EasePack,
 )
+
+registerEases()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
