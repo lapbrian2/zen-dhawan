@@ -18,7 +18,7 @@ const icons: Record<BuildingType, React.ReactNode> = {
     <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="8" y="20" width="32" height="24" fill="currentColor" opacity="0.15" />
       <rect x="8" y="20" width="32" height="24" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <polygon points="24,8 42,20 6,20" fill="currentColor" opacity="0.1" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+      <polygon points="24,8 42,20 6,20" fill="currentColor" stroke="currentColor" strokeWidth="1" opacity="0.3" />
       <rect x="20" y="30" width="8" height="14" fill="currentColor" opacity="0.2" />
     </svg>
   ),
@@ -28,7 +28,7 @@ const icons: Record<BuildingType, React.ReactNode> = {
       <rect x="12" y="16" width="24" height="28" stroke="currentColor" strokeWidth="1" opacity="0.5" />
       <circle cx="24" cy="28" r="6" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.4" />
       <circle cx="24" cy="28" r="2" fill="currentColor" opacity="0.3" />
-      <rect x="20" y="10" width="8" height="6" fill="currentColor" opacity="0.1" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+      <rect x="20" y="10" width="8" height="6" fill="currentColor" stroke="currentColor" strokeWidth="1" opacity="0.25" />
     </svg>
   ),
   workshop: (
