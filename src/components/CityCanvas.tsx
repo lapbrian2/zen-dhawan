@@ -50,14 +50,17 @@ export function CityCanvas() {
     Observer.create({
       target: canvasRef.current,
       type: 'wheel,pinch',
+      tolerance: 5,
+      debounce: true,
+      wheelSpeed: 0.4,
       onChangeY: (self) => {
-        const delta = -self.deltaY * 0.001
+        const delta = -self.deltaY * 0.0004
         const newZoom = Math.max(0.3, Math.min(2.5, zoomRef.current + delta))
         zoomRef.current = newZoom
         setZoom(newZoom)
         gsap.to(world, {
           scale: newZoom,
-          duration: 0.35,
+          duration: 0.4,
           ease: 'city-zoom',
           overwrite: true,
           onUpdate: updateTransform,
