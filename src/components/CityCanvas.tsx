@@ -39,8 +39,6 @@ export function CityCanvas() {
     Draggable.create(world, {
       type: 'x,y',
       inertia: true,
-      cursor: 'grab',
-      activeCursor: 'grabbing',
       dragResistance: 0,
       onDrag: updateTransform,
       onThrowUpdate: updateTransform,

@@ -24,10 +24,10 @@
   height: 100%;
   background: var(--ink);
   overflow: hidden;
-  cursor: grab;
+  cursor: none;
 }
 
-.app:active { cursor: grabbing; }
+.app * { cursor: none !important; }
 
 .app::after {
   content: '';
@@ -656,6 +656,18 @@
   .traveling-dot {
     display: none !important;
   }
+}
+
+/* ── Cursor Glow ── */
+
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
 }
 
 /* ── Accessibility ── */
